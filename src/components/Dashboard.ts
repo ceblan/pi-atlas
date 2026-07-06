@@ -1,7 +1,7 @@
 import type { Theme } from "@earendil-works/pi-coding-agent";
 import { matchesKey, Spacer, Text, type Component, type TUI } from "@earendil-works/pi-tui";
-import { BorderBox } from "@mohndoe/pi-tui-extras";
-import type { TextDef } from "@mohndoe/pi-tui-extras/src";
+import { BorderBox } from "@local/pi-tui-extras";
+import type { TextDef } from "@local/pi-tui-extras/src";
 import { ColorPalette, langPalette, modelPalette } from "../colorPalette";
 import { Languages } from "../tabs/Languages";
 import { Models } from "../tabs/Models";
@@ -154,7 +154,7 @@ export class Dashboard extends BorderBox {
       new Text(this.theme.fg("borderMuted", "─".repeat(Math.max(innerWidth, 60))), 0, 0),
     );
 
-    const controls = this.theme.fg("dim", "Esc/q close  ←→ tabs  r range  ↑↓ scroll");
+    const controls = this.theme.fg("dim", "Esc/q close  ←→/h·l tabs  r range  ↑↓/j·k scroll");
     this.addChild(new Text(controls, 0, 0));
 
     // Recompute content height — rebuild tabs if terminal was resized
@@ -176,8 +176,8 @@ export class Dashboard extends BorderBox {
       return;
     }
 
-    // Tab bar input (left/right)
-    if (matchesKey(data, "left") || matchesKey(data, "right")) {
+    // Tab bar input (left/right/h/l)
+    if (matchesKey(data, "left") || matchesKey(data, "right") || matchesKey(data, "h") || matchesKey(data, "l")) {
       this.tabBar.handleInput(data);
       this.tabBar.invalidate();
       return;
@@ -203,11 +203,13 @@ export class Dashboard extends BorderBox {
       return;
     }
 
-    // up/down: dispatch to table tabs, consumed on Overview
-    if (matchesKey(data, "up") || matchesKey(data, "down")) {
+    // up/down/j/k: dispatch to table tabs, consumed on Overview
+    if (matchesKey(data, "up") || matchesKey(data, "down") || matchesKey(data, "j") || matchesKey(data, "k")) {
       const tabIndex = this.tabBar.activeIndex;
       if (tabIndex >= 1) {
-        this.tabs[tabIndex]?.handleInput?.(data);
+        // Translate vim j/k to raw arrow-key escape sequences for child tab consumption
+        const mapped = matchesKey(data, "j") ? "\x1b[B" : matchesKey(data, "k") ? "\x1b[A" : data;
+        this.tabs[tabIndex]?.handleInput?.(mapped);
         this.tabs[tabIndex]?.invalidate?.();
         return;
       }

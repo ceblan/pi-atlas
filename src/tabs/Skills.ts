@@ -1,6 +1,6 @@
 import type { Theme } from "@earendil-works/pi-coding-agent";
 import { Container, Text, type TUI } from "@earendil-works/pi-tui";
-import { BorderBox, type BorderBoxOptions } from "@mohndoe/pi-tui-extras";
+import { BorderBox, type BorderBoxOptions } from "@local/pi-tui-extras";
 import { cell, type CellComponent } from "../components/cells";
 import { SortedTable } from "../components/SortedTable";
 import { formatCost, formatNumber } from "../format";

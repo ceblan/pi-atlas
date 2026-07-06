@@ -37,14 +37,14 @@ export class TabBar implements Component {
   }
 
   handleInput(data: string): void {
-    if (matchesKey(data, "left")) {
+    if (matchesKey(data, "left") || matchesKey(data, "h")) {
       if (this.activeIndex > 0) {
         this.activeIndex--;
         this.invalidate();
       }
       return;
     }
-    if (matchesKey(data, "right")) {
+    if (matchesKey(data, "right") || matchesKey(data, "l")) {
       if (this.activeIndex < this.tabs.length - 1) {
         this.activeIndex++;
         this.invalidate();

@@ -1,6 +1,6 @@
 import { type Component, visibleWidth } from "@earendil-works/pi-tui";
 import type { Theme } from "@earendil-works/pi-coding-agent";
-import { BorderBox } from "@mohndoe/pi-tui-extras";
+import { BorderBox } from "@local/pi-tui-extras";
 import { RangeSelector } from "./RangeSelector";
 
 const RANGE_BOX_WIDTH = 17;

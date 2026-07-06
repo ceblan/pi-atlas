@@ -1,7 +1,7 @@
 import type { Theme } from "@earendil-works/pi-coding-agent";
 import { matchesKey, Spacer, Text } from "@earendil-works/pi-tui";
-import { BorderBox } from "@mohndoe/pi-tui-extras";
-import { alignInWidthLR } from "@mohndoe/pi-tui-extras/src/core/align";
+import { BorderBox } from "@local/pi-tui-extras";
+import { alignInWidthLR } from "@local/pi-tui-extras/src/core/align";
 import pkg from "../../package.json" with { type: "json" };
 import type { LoadingProgress } from "../cache";
 import { renderBar } from "./shared/Bar";

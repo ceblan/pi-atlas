@@ -51,6 +51,27 @@ describe("TabBar", () => {
     expect((tb as { activeIndex: number }).activeIndex).toBe(3); // stays
   });
 
+  it("moves active tab left with h key", () => {
+    const tb = new TabBar(tabs, makeTheme(), 2);
+    tb.handleInput("h");
+    expect((tb as { activeIndex: number }).activeIndex).toBe(1);
+
+    tb.handleInput("h");
+    expect((tb as { activeIndex: number }).activeIndex).toBe(0);
+
+    tb.handleInput("h");
+    expect((tb as { activeIndex: number }).activeIndex).toBe(0); // stays at 0
+  });
+
+  it("moves active tab right with l key", () => {
+    const tb = new TabBar(tabs, makeTheme(), 2);
+    tb.handleInput("l");
+    expect((tb as { activeIndex: number }).activeIndex).toBe(3);
+
+    tb.handleInput("l");
+    expect((tb as { activeIndex: number }).activeIndex).toBe(3); // stays
+  });
+
   it("invalidates render cache", () => {
     const tb = new TabBar(tabs, makeTheme(), 0);
     tb.render(80);

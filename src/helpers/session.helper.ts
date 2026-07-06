@@ -27,8 +27,9 @@ export function makeEmptySession(
   project?: string,
   cwd?: string,
 ): SessionAgg {
+  const ts = isNaN(date.getTime()) ? new Date() : date;
   return makeSessionAgg({
-    timestamp: date.toISOString(),
+    timestamp: ts.toISOString(),
     sessionId,
     project: project ?? "",
     cwd: cwd ?? "",

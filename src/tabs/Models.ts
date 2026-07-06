@@ -5,7 +5,7 @@ import { cell, type CellComponent } from "../components/cells";
 import { SortedTable } from "../components/SortedTable";
 import { formatCost, formatModelName, formatNumber } from "../format";
 import { type ModelStat } from "../types";
-import { BorderBox } from "@mohndoe/pi-tui-extras";
+import { BorderBox } from "@local/pi-tui-extras";
 
 const EMPTY_MESSAGE = "No model data for this time range";
 

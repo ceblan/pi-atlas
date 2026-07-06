@@ -1,6 +1,6 @@
 import type { Theme } from "@earendil-works/pi-coding-agent";
 import { Container, Spacer, Text } from "@earendil-works/pi-tui";
-import { BorderBox } from "@mohndoe/pi-tui-extras";
+import { BorderBox } from "@local/pi-tui-extras";
 import { langPalette, modelPalette } from "../colorPalette";
 import { BarChart } from "../components/BarChart";
 import { KpiCards, type KpiData } from "../components/KpiCards";
